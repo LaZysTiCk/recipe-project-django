@@ -1,10 +1,8 @@
 🍲 Django Recipe WebApp
 
-A simple Django web application to manage recipes. Users can add, view, update, and delete recipes with authentication support.
+A simple Django web application to manage recipes. Users can add, view, update, and delete recipes .
 
 🚀 Features
-
-User registration and login
 
 Add, view, update, and delete recipes
 
