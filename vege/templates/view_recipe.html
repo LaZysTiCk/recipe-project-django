@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container mt-5">
+    <h1 class="text-center">List of Food Recipes</h1>
+
+    <!-- Search Bar -->
+    <div class="mx-auto col-6 mt-4">
+        <form method="get" action="{% url 'view_recipes' %}">
+            <div class="mb-3">
+                <label class="form-label"><b><em>Search a Food item</em></b></label>
+                <input type="text" class="form-control" name="search" value="{{ request.GET.search }}">
+                <br>
+                <button type="submit" class="btn btn-dark">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Recipes Table -->
+    <table class="table table-bordered border-dark mt-4">
+        <thead>
+            <tr>
+                <th scope="col">S.no</th>
+                <th scope="col">Recipe Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recipe in recipes %}
+            <tr>
+                <th>{{ forloop.counter }}</th>
+                <td>{{ recipe.recipe_name }}</td>
+                <td>{{ recipe.recipe_desc }}</td>
+                <td>
+                    <img src="/media/{{ recipe.recipe_image }}" style="height:100px; width:100px">
+                </td>
+                <td>
+                    <a href="/delete-recipe/{{ recipe.id }}/" class="btn btn-danger">Delete</a>
+                    <br>
+                    <a href="/update-recipe/{{ recipe.id }}/" class="btn btn-info mt-2">Update</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No recipes found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/add-recipe/" class="btn btn-primary mt-3">Add a New Recipe</a>
+    <a href="/" class="btn btn-secondary mt-3">Go Back to Home</a>
+</div>
+
+{% endblock %}

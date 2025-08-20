@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container mt-5">
+    <h1 class="text-center">Add a New Recipe</h1>
+    <form class="col-6 mx-auto p-3 shadow-lg card" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- cross site request forgery -->
+        <div class="mb-3">
+            <label class="form-label"><b>Recipe Name</b></label>
+            <input type="text" class="form-control" name="recipe_name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"><b>Recipe Description</b></label>
+            <textarea class="form-control" name="recipe_desc" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"><b>Recipe Image</b></label>
+            <input type="file" class="form-control" name="recipe_image" required>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="showmsg()"><b>Add</b></button>
+    </form>
+    <a href="/view-recipes/" class="btn btn-secondary mt-3">View All Recipes</a>
+</div>
+
+<script>
+    function showmsg(){
+        alert("Recipe Added Successfully !!!!");
+    }
+</script>
+
+{% endblock %}
